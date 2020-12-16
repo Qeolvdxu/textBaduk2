@@ -9,6 +9,11 @@ Stone::Stone()
 	placed = false;
 	territory = false;	
 	character = '+';
+	
+	childUp = 0;
+	childDown = 0;
+	childLeft = 0;
+	childRight = 0;
 }
 
 Stone::~Stone()
@@ -16,6 +21,23 @@ Stone::~Stone()
 	owner = -1;
 	placed = false;
 	territory = false;
+}
+
+void Stone::setUpChild(Stone* newChild)
+{
+	childUp = newChild;
+}
+void Stone::setDownChild(Stone* newChild)
+{
+	childDown = newChild;
+}
+void Stone::setLeftChild(Stone* newChild)
+{
+	childLeft = newChild;
+}
+void Stone::setRightChild(Stone* newChild)
+{
+	childRight = newChild;
 }
 
 #endif

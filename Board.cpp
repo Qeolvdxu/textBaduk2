@@ -15,6 +15,8 @@ Board::Board(int newSize)
 	array = new Stone*[size];	
 	for(int i=0; i<size; i++)
 		array[i] = new Stone[size];
+
+	//Set Stone Children
 }
 
 Board::~Board()
