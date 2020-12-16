@@ -7,12 +7,12 @@
 class Board 
 {
 	private:
-		Stone* array;
+		Stone** array;
 		int size;
 	public:
 		Board(int newSize); 
 		virtual ~Board();
-		void printBoard();
+		void printBoard(char player);
 };
 
 #include "Board.cpp"

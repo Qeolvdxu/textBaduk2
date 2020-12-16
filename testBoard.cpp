@@ -2,7 +2,8 @@
 
 int main(void)
 {
-	Board testBoard = new Board(9);
-	testBoard.print();
+	int size = 9;
+	Board* testBoard = new Board(size);
+	testBoard->printBoard('T'); //T for test
 	return 0;
 }
