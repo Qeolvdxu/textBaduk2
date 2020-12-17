@@ -9,10 +9,13 @@ class Board
 	private:
 		Stone** array;
 		int size;
+		char player;
 	public:
 		Board(int newSize); 
 		virtual ~Board();
-		void printBoard(char player);
+		void printBoard();
+		void placeStone();
+		void changePlayer();
 };
 
 #include "Board.cpp"

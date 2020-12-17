@@ -39,5 +39,30 @@ void Stone::setRightChild(Stone* newChild)
 {
 	childRight = newChild;
 }
+void Stone::setChar(char newChar)
+{
+	character = newChar;
+}
+
+char Stone::getChar()
+{
+	return character;
+}
+Stone* Stone::getUpChild()
+{
+	return childUp;
+}
+Stone* Stone::getDownChild()
+{
+	return childDown;
+}
+Stone* Stone::getLeftChild()
+{
+	return childLeft;
+}
+Stone* Stone::getRightChild()
+{
+	return childRight;
+}
 
 #endif

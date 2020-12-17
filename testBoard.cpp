@@ -1,9 +1,18 @@
+#include <iostream>
+
 #include "Board.cpp"
 
 int main(void)
 {
-	int size = 9;
-	Board* testBoard = new Board(size);
-	testBoard->printBoard('T'); //T for test
+	Board* testBoard = new Board(9);
+
+	bool running = true;
+	while(running)
+	{
+		testBoard->printBoard();
+		testBoard->placeStone();
+		testBoard->changePlayer();	
+	}
+
 	return 0;
 }

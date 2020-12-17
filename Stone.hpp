@@ -7,6 +7,7 @@ class Stone
 		int owner;		// which player owns
 		bool placed; 	// true if someone has placed this stone
 		bool territory; // true if this space counts towards territory
+		char character;
 
 		// children based on boared position
 		Stone* childUp;
@@ -14,7 +15,6 @@ class Stone
 		Stone* childLeft;
 		Stone* childRight;
 	public:
-		char character;
 
 		Stone(); 
 		virtual ~Stone();
@@ -23,6 +23,13 @@ class Stone
 		void setDownChild(Stone* newChild);
 		void setLeftChild(Stone* newChild);
 		void setRightChild(Stone* newChild);
+		void setChar(char newChar);
+
+		char getChar();
+		Stone* getUpChild();
+		Stone* getDownChild();
+		Stone* getLeftChild();
+		Stone* getRightChild();
 
 //		place(int player); // called when a player places a stone
 };
