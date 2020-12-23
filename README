@@ -1,0 +1,3 @@
+textbaduk2 is an interface for simulating a game of Go/Baduk in c++
+There are also TUI elements with the Board class
+Test programs are included
