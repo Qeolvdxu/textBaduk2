@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Board.cpp"
+#include "Board.hpp"
 
 int main(void)
 {
@@ -11,7 +11,7 @@ int main(void)
 	{
 		testBoard->printBoard();
 		testBoard->placeStone();
-		testBoard->changePlayer();	
+		testBoard->changePlayer();
 	}
 
 	return 0;

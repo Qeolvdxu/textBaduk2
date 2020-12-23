@@ -34,6 +34,4 @@ class Stone
 //		place(int player); // called when a player places a stone
 };
 
-#include "Stone.cpp"
-
 #endif

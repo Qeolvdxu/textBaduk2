@@ -13,6 +13,10 @@ int main(void)
 	testStone1->setDownChild(testStone2);
 	testStone1->setLeftChild(testStone3);
 	testStone1->setRightChild(0);
+
+	delete testStone1;
+	delete testStone2;
+	delete testStone3;
 	return 0;
 }
 
