@@ -12,7 +12,7 @@ class Board
 	public:
 		Board(int newSize); 
 		~Board();
-		void printBoard();
+		void printBoard(); //optional tui
 		void placeStone();
 		void changePlayer();
 };

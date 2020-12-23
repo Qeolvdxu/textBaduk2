@@ -17,10 +17,9 @@ Board::Board(int newSize)
 	for (int i = 0; i < size; i++) 
 	{
 	    array[i] = new Stone*[size];
+
         for (int j = 0; j < size; ++j)
-		{
             array[i][j] = new Stone;
-        }
     }
 
 	//Set Stone Children
@@ -58,13 +57,19 @@ void Board::printBoard()
 	
 	// print first row
 	for (int i = 0; i < size; i++)
-		cout << i << "  ";
+	{
+		cout << i << ' ';
+		if (i < 10)
+			cout << ' ';
+	}
 	cout << "\n\n";
 
 	// print remaining rows
     for(int i = 0; i < size; i++)
     {
-         cout << i << "  ";
+         cout << i << ' ';
+		 if (i < 10)
+			cout << ' ';
          for (int j = 0; j < size; j++)
          {
 	         cout << array[i][j]->getChar();
@@ -111,7 +116,7 @@ void Board::changePlayer() //flip players on turn change
 {
 	if(player == '0')
 		player = 'O';
-	if(player == 'O')
+	else if(player == 'O')
 		player = '0';
 }
 

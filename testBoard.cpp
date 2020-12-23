@@ -4,7 +4,7 @@
 
 int main(void)
 {
-	Board* testBoard = new Board(9);
+	Board* testBoard = new Board(18);
 
 	bool running = true;
 	while(running)
