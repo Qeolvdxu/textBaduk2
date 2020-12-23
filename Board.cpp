@@ -27,10 +27,14 @@ Board::Board(int newSize)
 	{
 		for(int j=0; j<size; j++)
 		{
-			array[i][j]->setUpChild    (array[i][j]);
-			array[i][j]->setDownChild  (array[i][j]);
-			array[i][j]->setLeftChild  (array[i][j]);
-			array[i][j]->setRightChild (array[i][j]);
+			if (i > 0)
+				array[i][j]->setUpChild    (array[i-1][j]);
+			if (i < size-1)
+				array[i][j]->setDownChild  (array[i+1][j]);
+			if (j > 0)
+				array[i][j]->setLeftChild  (array[i][j-1]);
+			if (j < size-1)
+				array[i][j]->setRightChild (array[i][j+1]);
 		}
 	}
 	
@@ -118,6 +122,68 @@ void Board::changePlayer() //flip players on turn change
 		player = 'O';
 	else if(player == 'O')
 		player = '0';
+}
+
+void Board::checkCaps() //checks and deals with any captured stone
+{
+	int counter = 0;
+	int countcap = 4;
+
+	char curChar;
+	
+	bool upAlly = false;
+	bool downAlly = false;
+	bool leftAlly = false;
+	bool rightAlly = false;
+
+	for(int i=0; i<size; i++)
+	{
+		for(int j=0; j<size; j++)
+		{
+
+			if (i > 0)
+			{
+				curChar = array[i][j]->getUpChild()->getChar();
+				if (curChar != '+' && curChar != player)
+					counter++;
+			}
+			else
+				counter++;
+			
+			if (i < size-1)
+			{
+				curChar = array[i][j]->getDownChild()->getChar();
+				if (curChar != '+' && curChar != player)
+					counter++;
+			}
+			else
+				counter++;
+
+			if (j > 0)
+			{
+				curChar = array[i][j]->getLeftChild()->getChar();
+				if (curChar != '+' && curChar != player)
+					counter++;
+			}
+			else
+				counter++;
+
+			if (j < size-1)
+			{
+				curChar = array[i][j]->getRightChild()->getChar();
+				if (curChar != '+' && curChar != player)
+					counter++;
+			}
+			else
+				counter++;
+
+			if(counter >= countcap)
+				array[i][j]->setChar('+');	
+
+			counter = 0;
+		}
+	}
+
 }
 
 #endif
