@@ -15,7 +15,8 @@ class Board
 		void printBoard(); //optional tui
 		void placeStone();
 		void changePlayer();
-		void checkCaps();
+		void checkCap();
+		void checkAllCaps();
 };
 
 #endif

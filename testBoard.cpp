@@ -11,8 +11,7 @@ int main(void)
 	{
 		testBoard->printBoard();
 		testBoard->placeStone();
-		testBoard->checkCaps();
-		testBoard->printBoard();
+		testBoard->checkAllCaps();
 
 		testBoard->changePlayer();
 	}

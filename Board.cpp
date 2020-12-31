@@ -124,66 +124,17 @@ void Board::changePlayer() //flip players on turn change
 		player = '0';
 }
 
-void Board::checkCaps() //checks and deals with any captured stone
+void Board::checkCap(Stone* stone) //checks and deals with one singular stone 
 {
-	int counter = 0;
-	int countcap = 4;
+	Stone* up = stone->getUpChild();
+	Stone* down = stone->getDownChild();
+	Stone* left = stone->getLeftChild();
+	Stone* right = stone->getRightChild();
+}
 
-	char curChar;
-	
-	bool upAlly = false;
-	bool downAlly = false;
-	bool leftAlly = false;
-	bool rightAlly = false;
-
-	for(int i=0; i<size; i++)
-	{
-		for(int j=0; j<size; j++)
-		{
-
-			if (i > 0)
-			{
-				curChar = array[i][j]->getUpChild()->getChar();
-				if (curChar != '+' && curChar != player)
-					counter++;
-			}
-			else
-				counter++;
-			
-			if (i < size-1)
-			{
-				curChar = array[i][j]->getDownChild()->getChar();
-				if (curChar != '+' && curChar != player)
-					counter++;
-			}
-			else
-				counter++;
-
-			if (j > 0)
-			{
-				curChar = array[i][j]->getLeftChild()->getChar();
-				if (curChar != '+' && curChar != player)
-					counter++;
-			}
-			else
-				counter++;
-
-			if (j < size-1)
-			{
-				curChar = array[i][j]->getRightChild()->getChar();
-				if (curChar != '+' && curChar != player)
-					counter++;
-			}
-			else
-				counter++;
-
-			if(counter >= countcap)
-				array[i][j]->setChar('+');	
-
-			counter = 0;
-		}
-	}
-
+void Board::checkAllCaps() //checks and deals with any captured stone
+{
+		
 }
 
 #endif
