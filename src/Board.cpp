@@ -3,7 +3,7 @@
 
 #include <iostream> 
 
-#include "Board.hpp"
+#include "../include/Board.hpp"
 
 using namespace std;
 

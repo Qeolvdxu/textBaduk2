@@ -1,7 +1,7 @@
 #ifndef STONE_CPP
 #define STONE_CPP
 
-#include "Stone.hpp"
+#include "../include/Stone.hpp"
 
 int main(void)
 {

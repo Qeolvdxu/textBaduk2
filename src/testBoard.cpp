@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Board.hpp"
+#include "../include/Board.hpp"
 
 int main(void)
 {
