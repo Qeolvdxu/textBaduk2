@@ -92,11 +92,15 @@ void Board::printBoard()
 	}
 }
 
-void Board::placeStone(int row, int collum) //simply gets user input and changes the respective stones character
+void Board::placeStone() //simply gets user input and changes the respective stones character
 {
+	int row;
+	int collum;
 	bool valid = false;
 	do
 	{
+		cin >> row;
+		cin >> collum;
 		if (row >= size || collum >= size)
 			cout << "\nOut Of Bounds!\n";
 		else
@@ -110,7 +114,6 @@ void Board::placeStone(int row, int collum) //simply gets user input and changes
 				cout << "\nInvalid Placement!\n";
 		}
 	}while(!valid);
-	this->checkCap(array[row][collum]);
 }
 
 void Board::changePlayer() //flip players on turn change
@@ -123,42 +126,16 @@ void Board::changePlayer() //flip players on turn change
 
 void Board::checkCap(Stone* stone) //checks and deals with one singular stone 
 {
-	Stone* current = stone;
-	bool safe = false; // Assume the string of stones is not safe from being captured until proven otherwise
-	cout<< "test1";
 	Stone* liberts[4];
-	cout<< "test2";
-	int checkedCounter = 0;
-	while(safe == false)
-	{
-		liberts[0] = current->getUpChild();
-		liberts[1] = current->getDownChild();
-		liberts[2] = current->getLeftChild();
-		liberts[3] = current->getRightChild();
-		for (int i = 0; i < 4; i++)
-		{
-			if(liberts[i]->getChar() == player && liberts[i]->getChecked() == false)
-				current = liberts[i];
-			else if(liberts[i]->getChar() == '+');
-				safe = true;
-			if(liberts[i]->getChar() != player && liberts[i]->getChar() != '+')	
-				checkedCounter++;
-
-			liberts[i]->setChecked(true);
-		}
-		cout << checkedCounter;
-		if (checkedCounter > 3 && safe == false)
-		{
-			stone->setChar('X');
-			break;
-		}	
-		checkedCounter = 0;
-	}
+	liberts[0] = stone->getUpChild();
+	liberts[1] = stone->getDownChild();
+	liberts[2] = stone->getLeftChild();
+	liberts[3] = stone->getRightChild();
 }
 
 void Board::checkAllCaps() //checks and deals with any captured stone
 {
-			
+		
 }
 
 #endif

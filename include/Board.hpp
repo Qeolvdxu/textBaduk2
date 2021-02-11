@@ -13,7 +13,7 @@ class Board
 		Board(int newSize); 
 		~Board();
 		void printBoard(); //optional tui
-		void placeStone();
+		void placeStone(int row, int collum);
 		void changePlayer();
 		void checkCap(Stone* stone);
 		void checkAllCaps();

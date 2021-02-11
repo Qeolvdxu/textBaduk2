@@ -9,6 +9,7 @@ Stone::Stone()
 	placed = false;
 	territory = false;	
 	character = '+';
+	checked = false;
 	
 	childUp = 0;
 	childDown = 0;
@@ -63,6 +64,14 @@ Stone* Stone::getLeftChild()
 Stone* Stone::getRightChild()
 {
 	return childRight;
+}
+void Stone::setChecked(bool newValue)
+{
+	checked = newValue;
+}
+bool Stone::getChecked()
+{
+	return checked;
 }
 
 #endif

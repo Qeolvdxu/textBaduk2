@@ -8,6 +8,7 @@ class Stone
 		bool placed; 	// true if someone has placed this stone
 		bool territory; // true if this space counts towards territory
 		char character;
+		bool checked;
 
 		// children based on boared position
 		Stone* childUp;
@@ -30,6 +31,9 @@ class Stone
 		Stone* getDownChild();
 		Stone* getLeftChild();
 		Stone* getRightChild();
+
+		void setChecked(bool newValue);
+		bool getChecked();
 
 //		place(int player); // called when a player places a stone
 };
