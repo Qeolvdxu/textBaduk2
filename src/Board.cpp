@@ -54,9 +54,9 @@ Board::~Board()
 
 void Board::printBoard()
 {
-	cout << "\u001b[2J" //clears screen on both windows and unix-likes
+//	cout << "\u001b[2J" //clears screen on both windows and unix-likes
 	//<< "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
-    << "The turn belngs to player " << player << "\n\n"
+    cout << "The turn belngs to player " << player << "\n\n"
     << "   ";
 	
 	// print first row
@@ -125,10 +125,12 @@ void Board::checkCap(Stone* stone) //checks and deals with one singular stone
 {
 	Stone* current = stone;
 	bool safe = false; // Assume the string of stones is not safe from being captured until proven otherwise
-	cout<< "test1";
 	Stone* liberts[4];
-	cout<< "test2";
 	int checkedCounter = 0;
+	int checkedGoal = 0;
+	
+	current->setChecked(true);
+
 	while(safe == false)
 	{
 		liberts[0] = current->getUpChild();
@@ -137,23 +139,49 @@ void Board::checkCap(Stone* stone) //checks and deals with one singular stone
 		liberts[3] = current->getRightChild();
 		for (int i = 0; i < 4; i++)
 		{
-			if(liberts[i]->getChar() == player && liberts[i]->getChecked() == false)
-				current = liberts[i];
-			else if(liberts[i]->getChar() == '+');
-				safe = true;
-			if(liberts[i]->getChar() != player && liberts[i]->getChar() != '+')	
-				checkedCounter++;
+			if (liberts[i]->getChecked() == false)
+			{
+				// If Lib is Friendly Stone
+				if(liberts[i]->getChar() == player)
+				{
+					current = liberts[i];
+				}
+	
+				// If Lib is Empty Space
+				if(liberts[i]->getChar() == '+');
+				{
+					safe = true;
+				}
 
-			liberts[i]->setChecked(true);
+				// If Lib is Enemy Stone
+				if(liberts[i]->getChar() != player && liberts[i]->getChar() != '+')	
+				{
+					checkedCounter++;
+				}
+
+				if (liberts[i]->getChecked() == false)
+					checkedGoal++;
+				liberts[i]->setChecked(true);
+			}
 		}
-		cout << checkedCounter;
-		if (checkedCounter > 3 && safe == false)
+		cout << checkedCounter << "\nsafe:" << safe << "\nChecked Goal:" << checkedGoal << '\n';
+		if (checkedCounter >= checkedGoal)
 		{
+			safe = false;
 			stone->setChar('X');
 			break;
 		}	
-		checkedCounter = 0;
 	}
+
+	//Reset for next Check
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size; j++)
+		{
+			array[i][j]->setChecked(false);
+		}
+	}
+	
 }
 
 void Board::checkAllCaps() //checks and deals with any captured stone

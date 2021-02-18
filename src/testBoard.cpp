@@ -21,7 +21,8 @@ int main(void)
 	testBoard->placeStone(12,10);
 	testBoard->placeStone(12,11);
 	testBoard->placeStone(12,12);
-	testBoard->placeStone(12,13);
+	testBoard->placeStone(11,8);
+	testBoard->placeStone(5,5);
 
 	testBoard->changePlayer();
 
