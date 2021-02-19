@@ -54,9 +54,9 @@ Board::~Board()
 
 void Board::printBoard()
 {
-//	cout << "\u001b[2J" //clears screen on both windows and unix-likes
+	cout << "\u001b[2J" //clears screen on both windows and unix-likes
 	//<< "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
-    cout << "The turn belngs to player " << player << "\n\n"
+    << "The turn belngs to player " << player << "\n\n"
     << "   ";
 	
 	// print first row
@@ -126,10 +126,11 @@ void Board::checkCap(Stone* stone) //checks and deals with one singular stone
 	Stone* current = stone;
 	Stone* group[size*size];
 	Stone* liberts[4];
-	int groupCounter = 0;
+	int groupCounter = 1;
 
 	// Form group of most recent placement
 	//current->setChecked(true);	
+	group[0] = current;
 	for(int i = 0; i < groupCounter + 1; i++)
 	{
 		if (current->getUpChild() != 0)
