@@ -124,6 +124,89 @@ void Board::changePlayer() //flip players on turn change
 void Board::checkCap(Stone* stone) //checks and deals with one singular stone 
 {
 	Stone* current = stone;
+	Stone* group[size*size];
+	Stone* liberts[4];
+	int groupCounter = 0;
+
+	// Form group of most recent placement
+	//current->setChecked(true);	
+	for(int i = 0; i < groupCounter + 1; i++)
+	{
+		if (current->getUpChild() != 0)
+			liberts[0] = current->getUpChild();
+		if (current->getDownChild() != 0)
+			liberts[1] = current->getDownChild();
+		if (current->getLeftChild() != 0)
+			liberts[2] = current->getLeftChild();
+		if (current->getRightChild() != 0)
+			liberts[3] = current->getRightChild();
+		for (int j = 0; j < 4; j++)
+		{
+				if ( liberts[j]->getChecked() == false) 
+				{
+					cout << j << ": \n" << groupCounter << '\n';
+					// Friendly Stone
+					if (liberts[j]->getChar() == player)
+					{
+						cout << "Friendly Player!";
+						group[groupCounter] = liberts[j];//current;
+						groupCounter++;
+						current = liberts[j];
+					}
+					// Enenmy Stone
+					else if (liberts[j]->getChar() == '+')
+					{
+						cout << "SAFE!" << liberts[j]->getChar();
+					}
+					// Empty Space
+					else
+					{
+						cout << "Enemy!";
+					}
+					cout << "\n";
+					liberts[j]->setChecked(true);
+				}
+		}
+	}
+
+	//Check if group is captured
+	bool safe = false; //assume group is dead until proven otherwise
+	for (int i = 0; i < groupCounter; i++)
+	{
+		if (group[i]->getUpChild()->getChar()    == '+')
+			safe = true;
+		if (group[i]->getDownChild()->getChar()  == '+')
+			safe = true;
+		if (group[i]->getLeftChild()->getChar()  == '+')
+			safe = true;
+		if (group[i]->getRightChild()->getChar() == '+')
+			safe = true;
+	}	
+
+	//Deal with captured group
+	if (safe == false)
+	{
+		for (int i = 0; i < groupCounter; i++)
+		{
+			group[i]->setChar('+');
+		}
+	}
+
+
+	//Reset for next Check
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size; j++)
+		{
+			array[i][j]->setChecked(false);
+		}
+	}
+}
+
+/*
+void Board::checkCap(Stone* stone) //checks and deals with one singular stone 
+{
+	Stone* current = stone;
 	bool safe = false; // Assume the string of stones is not safe from being captured until proven otherwise
 	Stone* liberts[4];
 	int checkedCounter = 0;
@@ -183,7 +266,7 @@ void Board::checkCap(Stone* stone) //checks and deals with one singular stone
 	}
 	
 }
-
+*/
 void Board::checkAllCaps() //checks and deals with any captured stone
 {
 			
