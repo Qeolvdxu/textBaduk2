@@ -46,12 +46,16 @@ int main(void)
 // Takes user input to play
 	int row, collum;
 	bool running = true;
+	bool safe = false;
 	while(running)
 	{
 		testBoard->printBoard();
-		cin >> row;	
-		cin >> collum;	
-		testBoard->placeStone(row,collum);
+	
+		do{
+			cin >> row;	
+			cin >> collum;	
+			safe = testBoard->placeStone(row,collum);
+		} while(safe == false);
 		testBoard->checkAllCaps();
 
 //		testBoard->changePlayer();

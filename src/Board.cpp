@@ -92,25 +92,23 @@ void Board::printBoard()
 	}
 }
 
-void Board::placeStone(int row, int collum) //simply gets user input and changes the respective stones character
+bool Board::placeStone(int row, int collum) //simply gets user input and changes the respective stones character
 {
 	bool valid = false;
-	do
+	if (row >= size || collum >= size)
+		cout << "\nOut Of Bounds!\n";
+	else
 	{
-		if (row >= size || collum >= size)
-			cout << "\nOut Of Bounds!\n";
-		else
+		if (array[row][collum]->getChar() == '+')
 		{
-			if (array[row][collum]->getChar() == '+')
-			{
-				array[row][collum]->setChar(player);
-				valid = true;
-			}
-			else
-				cout << "\nInvalid Placement!\n";
+			array[row][collum]->setChar(player);
+			valid = true;
 		}
-	}while(!valid);
-	this->checkCap(array[row][collum]);
+		else
+			cout << "\nInvalid Placement!\n";
+	}
+		this->checkCap(array[row][collum]);
+	return valid;
 }
 
 void Board::changePlayer() //flip players on turn change
