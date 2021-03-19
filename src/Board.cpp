@@ -167,6 +167,17 @@ void Board::checkCap(Stone* stone) //checks and deals with one singular stone
 				}
 		}
 	}
+	for (int i = 0; i < groupCounter; i++)
+	{
+			if (group[i]->getUpChild()->getChar() == player)
+				group[groupCounter++] = group[i]->getUpChild();
+			if (group[i]->getDownChild()->getChar() == player)
+				group[groupCounter++] = group[i]->getDownChild();
+			if (group[i]->getLeftChild()->getChar() == player)
+				group[groupCounter++] = group[i]->getLeftChild();
+			if (group[i]->getRightChild()->getChar() == player)
+				group[groupCounter++] = group[i]->getRightChild();
+	}
 
 	//Check if group is captured
 	bool safe = false; //assume group is dead until proven otherwise
