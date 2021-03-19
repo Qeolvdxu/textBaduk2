@@ -90,7 +90,6 @@ void Board::printBoard()
 			cout << "\n";
 		  }
 	}
-	cout << 
 }
 
 bool Board::placeStone(int row, int collum) //simply gets user input and changes the respective stones character
