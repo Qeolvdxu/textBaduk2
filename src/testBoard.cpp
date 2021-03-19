@@ -7,6 +7,18 @@ using namespace std;
 int main(void)
 {
 	Board* testBoard = new Board(18);
+	testBoard->placeStone(3,2);
+	testBoard->placeStone(3,3);
+	testBoard->placeStone(3,4);
+	testBoard->placeStone(3,5);
+	testBoard->placeStone(4,2);
+	testBoard->placeStone(5,2);
+	testBoard->placeStone(4,5);
+	testBoard->placeStone(5,5);
+	testBoard->placeStone(6,2);
+	testBoard->placeStone(6,3);
+	testBoard->placeStone(6,4);
+	testBoard->placeStone(6,5);
 
 	int row, collum;
 	bool running = true;
@@ -17,8 +29,11 @@ int main(void)
 		testBoard->printBoard();
 		do{
 			cin >> row;	
+			if (row == 'e')
+				running = false;
 			cin >> collum;	
 			safe = testBoard->placeStone(row,collum);
+			testBoard->checkCap(row,collum);
 		} while(safe == false);
 		testBoard->changePlayer();
 	}

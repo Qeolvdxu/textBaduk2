@@ -46,7 +46,7 @@ Board::~Board()
 	{
    		for (int j = 0; j < size; j++)
 		{
-       		//delete array[i][j]; // delete pointer for each
+       		delete array[i][j]; // delete pointer for each
    		}
 	}
 	size = 0;
@@ -90,6 +90,7 @@ void Board::printBoard()
 			cout << "\n";
 		  }
 	}
+	cout << 
 }
 
 bool Board::placeStone(int row, int collum) //simply gets user input and changes the respective stones character
@@ -107,7 +108,6 @@ bool Board::placeStone(int row, int collum) //simply gets user input and changes
 		else
 			cout << "\nInvalid Placement!\n";
 	}
-		this->checkCap(array[row][collum]);
 	return valid;
 }
 
@@ -119,8 +119,9 @@ void Board::changePlayer() //flip players on turn change
 		player = '0';
 }
 
-void Board::checkCap(Stone* stone) //checks and deals with one singular stone 
+void Board::checkCap(int row, int collum) //checks and deals with one singular stone 
 {
+	Stone* stone = array[row][collum];
 	Stone* current = stone;
 	Stone* group[size*size];
 	Stone* liberts[4];
