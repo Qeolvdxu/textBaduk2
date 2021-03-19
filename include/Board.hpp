@@ -16,7 +16,6 @@ class Board
 		bool placeStone(int row, int collum);
 		void changePlayer();
 		void checkCap(Stone* stone);
-		void checkAllCaps();
 };
 
 #endif

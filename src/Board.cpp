@@ -124,11 +124,8 @@ void Board::checkCap(Stone* stone) //checks and deals with one singular stone
 	Stone* current = stone;
 	Stone* group[size*size];
 	Stone* liberts[4];
-	int groupCounter = 1;
+	int groupCounter = 0;
 
-	// Form group of most recent placement
-	//current->setChecked(true);	
-	group[0] = current;
 	for(int i = 0; i < groupCounter + 1; i++)
 	{
 		if (current->getUpChild() != 0)
@@ -139,30 +136,18 @@ void Board::checkCap(Stone* stone) //checks and deals with one singular stone
 			liberts[2] = current->getLeftChild();
 		if (current->getRightChild() != 0)
 			liberts[3] = current->getRightChild();
+
+		// Check each liberty of the current stone and if that liberty is a friend then add it to the group and check that stones liberties
 		for (int j = 0; j < 4; j++)
 		{
 				if ( liberts[j]->getChecked() == false) 
 				{
-					cout << j << ": \n" << groupCounter << '\n';
-					// Friendly Stone
 					if (liberts[j]->getChar() == player)
 					{
-						cout << "Friendly Player!";
-						group[groupCounter] = liberts[j];//current;
+						group[groupCounter] = liberts[j];
 						groupCounter++;
 						current = liberts[j];
 					}
-					// Enenmy Stone
-					else if (liberts[j]->getChar() == '+')
-					{
-						cout << "SAFE!" << liberts[j]->getChar();
-					}
-					// Empty Space
-					else
-					{
-						cout << "Enemy!";
-					}
-					cout << "\n";
 					liberts[j]->setChecked(true);
 				}
 		}
@@ -178,6 +163,7 @@ void Board::checkCap(Stone* stone) //checks and deals with one singular stone
 			if (group[i]->getRightChild()->getChar() == player)
 				group[groupCounter++] = group[i]->getRightChild();
 	}
+
 
 	//Check if group is captured
 	bool safe = false; //assume group is dead until proven otherwise
@@ -211,75 +197,6 @@ void Board::checkCap(Stone* stone) //checks and deals with one singular stone
 			array[i][j]->setChecked(false);
 		}
 	}
-}
-
-/*
-void Board::checkCap(Stone* stone) //checks and deals with one singular stone 
-{
-	Stone* current = stone;
-	bool safe = false; // Assume the string of stones is not safe from being captured until proven otherwise
-	Stone* liberts[4];
-	int checkedCounter = 0;
-	int checkedGoal = 0;
-	
-	current->setChecked(true);
-
-	while(safe == false)
-	{
-		liberts[0] = current->getUpChild();
-		liberts[1] = current->getDownChild();
-		liberts[2] = current->getLeftChild();
-		liberts[3] = current->getRightChild();
-		for (int i = 0; i < 4; i++)
-		{
-			if (liberts[i]->getChecked() == false)
-			{
-				// If Lib is Friendly Stone
-				if(liberts[i]->getChar() == player)
-				{
-					current = liberts[i];
-				}
-	
-				// If Lib is Empty Space
-				if(liberts[i]->getChar() == '+');
-				{
-					safe = true;
-				}
-
-				// If Lib is Enemy Stone
-				if(liberts[i]->getChar() != player && liberts[i]->getChar() != '+')	
-				{
-					checkedCounter++;
-				}
-
-				if (liberts[i]->getChecked() == false)
-					checkedGoal++;
-				liberts[i]->setChecked(true);
-			}
-		}
-		cout << checkedCounter << "\nsafe:" << safe << "\nChecked Goal:" << checkedGoal << '\n';
-		if (checkedCounter >= checkedGoal)
-		{
-			safe = false;
-			stone->setChar('X');
-			break;
-		}	
-	}
-
-	//Reset for next Check
-	for(int i = 0; i < size; i++)
-	{
-		for(int j = 0; j < size; j++)
-		{
-			array[i][j]->setChecked(false);
-		}
-	}
-	
-}
-*/
-void Board::checkAllCaps() //checks and deals with any captured stone
-{
-			
 }
 
 #endif

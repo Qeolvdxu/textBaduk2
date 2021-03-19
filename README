@@ -1,3 +1,5 @@
-textbaduk2 is an interface for simulating a game of Go/Baduk in c++
-There are also TUI elements with the Board class
-Test programs are included
+textbaduk2 is an collection of header and source files meant for simulating a game of Go/Baduk in c++
+There are also TUI elements with the Board class for viewing the game in a terminal
+
+src/testBoard.cpp is a basic standard 18x18 board to play and test the headers
+src/testStone.cpp is to be built and run to verify that the stone class is free of errors (for debugging purposes)
