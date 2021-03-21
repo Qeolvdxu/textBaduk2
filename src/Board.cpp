@@ -92,16 +92,16 @@ void Board::printBoard()
 	}
 }
 
-bool Board::placeStone(int row, int collum) //simply gets user input and changes the respective stones character
+bool Board::placeStone(int row, int column) //simply gets user input and changes the respective stones character
 {
 	bool valid = false;
-	if (row >= size || collum >= size)
+	if (row >= size || column >= size)
 		cout << "\nOut Of Bounds!\n";
 	else
 	{
-		if (array[row][collum]->getChar() == '+')
+		if (array[row][column]->getChar() == '+')
 		{
-			array[row][collum]->setChar(player);
+			array[row][column]->setChar(player);
 			valid = true;
 		}
 		else
@@ -118,9 +118,9 @@ void Board::changePlayer() //flip players on turn change
 		player = '0';
 }
 
-void Board::checkCap(int row, int collum) //checks and deals with one singular stone 
+void Board::checkCap(int row, int column) //checks and deals with one singular stone 
 {
-	Stone* stone = array[row][collum];
+	Stone* stone = array[row][column];
 	Stone* current = stone;
 	Stone* group[size*size];
 	Stone* liberts[4];

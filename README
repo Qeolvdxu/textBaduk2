@@ -18,7 +18,7 @@ Boards: This class is the main component and includes the graphical aspects, all
   it contains one 2d array of pointers to all of the stones in the game which is equal to the size of the game squared
   the class is initalized with a size variable in the form of an integer so specify the length and height of the board
   printBoard() prints everything the user will see except for errors and other system messages
-  placeStone() lets a player place a stone on the specifed coordinates int he form of two integers (row, collum)
+  placeStone() lets a player place a stone on the specifed coordinates int he form of two integers (row, column)
     this function returns a boolean which specifies if the placement is safe or it is an illegal move
   changePlayer() will rotate the current player out of the next player in line
   checkCap() will check the group of the specified stone if it is captured or not and deals with that capture
