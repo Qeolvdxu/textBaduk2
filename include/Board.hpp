@@ -13,9 +13,9 @@ class Board
 		Board(int newSize); 
 		~Board();
 		void printBoard(); //optional tui
-		bool placeStone(int row, int collum);
+		bool placeStone(int row, int column);
 		void changePlayer();
-		void checkCap(int row, int collum);
+		void checkCap(int row, int column);
 };
 
 #endif

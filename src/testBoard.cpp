@@ -20,7 +20,7 @@ int main(void)
 	testBoard->placeStone(6,4);
 	testBoard->placeStone(6,5);
 
-	int row, collum;
+	int row, column;
 	bool running = true;
 	bool safe = false;
 
@@ -31,9 +31,9 @@ int main(void)
 			cin >> row;	
 			if (row == 'e')
 				running = false;
-			cin >> collum;	
-			safe = testBoard->placeStone(row,collum);
-			testBoard->checkCap(row,collum);
+			cin >> column;	
+			safe = testBoard->placeStone(row,column);
+			testBoard->checkCap(row,column);
 		} while(safe == false);
 		testBoard->changePlayer();
 	}
