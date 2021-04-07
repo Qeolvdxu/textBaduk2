@@ -33,8 +33,8 @@ int main(void)
 				running = false;
 			cin >> column;	
 			safe = testBoard->placeStone(row,column);
-			testBoard->checkCap(row,column);
 		} while(safe == false);
+		testBoard->checkAllCaps();
 		testBoard->changePlayer();
 	}
 

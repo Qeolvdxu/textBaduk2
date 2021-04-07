@@ -118,7 +118,7 @@ void Board::changePlayer() //flip players on turn change
 		player = '0';
 }
 
-void Board::checkCap(int row, int column) //checks and deals with one singular stone 
+void Board::checkCap(int row, int column, char type) //checks and deals with one singular stone 
 {
 	Stone* stone = array[row][column];
 	Stone* current = stone;
@@ -143,9 +143,9 @@ void Board::checkCap(int row, int column) //checks and deals with one singular s
 		// Check each liberty of the current stone and if that liberty is a friend then add it to the group and check that stones liberties
 		for (int j = 0; j < 4; j++)
 		{
-				if ( liberts[j] != 0 && liberts[j]->getChecked() == false) 
+				if (liberts[j] != 0 && liberts[j]->getChecked() == false) 
 				{
-					if (liberts[j]->getChar() == player)
+					if (liberts[j]->getChar() == type)
 					{
 						group[groupCounter] = liberts[j];
 						groupCounter++;
@@ -160,13 +160,13 @@ void Board::checkCap(int row, int column) //checks and deals with one singular s
 	{
 			cout << "Tailing for loop test: "<<i<<"\n";
 
-			if (group[i]->getUpChild() != 0 && group[i]->getUpChild()->getChar() == player)
+			if (group[i]->getUpChild() != 0 && group[i]->getUpChild()->getChar() == type)
 				group[groupCounter++] = group[i]->getUpChild();
-			if (group[i]->getDownChild() != 0 && group[i]->getDownChild()->getChar() == player)
+			if (group[i]->getDownChild() != 0 && group[i]->getDownChild()->getChar() == type)
 				group[groupCounter++] = group[i]->getDownChild();
-			if (group[i]->getLeftChild() != 0 && group[i]->getLeftChild()->getChar() == player)
+			if (group[i]->getLeftChild() != 0 && group[i]->getLeftChild()->getChar() == type)
 				group[groupCounter++] = group[i]->getLeftChild();
-			if (group[i]->getRightChild() != 0 && group[i]->getRightChild()->getChar() == player)
+			if (group[i]->getRightChild() != 0 && group[i]->getRightChild()->getChar() == type)
 				group[groupCounter++] = group[i]->getRightChild();
 	}
 
@@ -197,7 +197,37 @@ void Board::checkCap(int row, int column) //checks and deals with one singular s
 		}
 	}
 
-	cout << "Reset for next check\n";
+}
+
+void Board::checkAllCaps(void) // calls checkcap for each unchecked stone
+{
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size; j++)
+		{
+			if (array[i][j]->getChecked() == false)
+				this->checkCap(i,j, '0');		
+		}
+	}
+
+	//Reset for next Check
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size; j++)
+		{
+				array[i][j]->setChecked(false);
+		}
+	}
+
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size; j++)
+		{
+			if (array[i][j]->getChecked() == false)
+				this->checkCap(i,j, 'O');		
+		}
+	}
+
 	//Reset for next Check
 	for(int i = 0; i < size; i++)
 	{

@@ -11,11 +11,12 @@ class Board
 		char player;
 	public:
 		Board(int newSize); 
-		~Board();
-		void printBoard(); //optional tui
+		~Board(void);
+		void printBoard(void); //optional tui
 		bool placeStone(int row, int column);
-		void changePlayer();
-		void checkCap(int row, int column);
+		void changePlayer(void);
+		void checkAllCaps(void);
+		void checkCap(int row, int column, char type);
 };
 
 #endif
