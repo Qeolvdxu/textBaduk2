@@ -123,11 +123,13 @@ void Board::checkCap(int row, int column) //checks and deals with one singular s
 	Stone* stone = array[row][column];
 	Stone* current = stone;
 	Stone* group[size*size];
-	Stone* liberts[4];
+	Stone* liberts[4] = {0};
 	int groupCounter = 0;
 
+	cout << "Checkcap Start \n";
 	for(int i = 0; i < groupCounter + 1; i++)
 	{
+		cout << "Checkcap start test1: " << i << '\n';
 		if (current->getUpChild() != 0)
 			liberts[0] = current->getUpChild();
 		if (current->getDownChild() != 0)
@@ -136,11 +138,12 @@ void Board::checkCap(int row, int column) //checks and deals with one singular s
 			liberts[2] = current->getLeftChild();
 		if (current->getRightChild() != 0)
 			liberts[3] = current->getRightChild();
+		cout << "TEST2\n";
 
 		// Check each liberty of the current stone and if that liberty is a friend then add it to the group and check that stones liberties
 		for (int j = 0; j < 4; j++)
 		{
-				if ( liberts[j]->getChecked() == false) 
+				if ( liberts[j] != 0 && liberts[j]->getChecked() == false) 
 				{
 					if (liberts[j]->getChar() == player)
 					{
@@ -151,50 +154,56 @@ void Board::checkCap(int row, int column) //checks and deals with one singular s
 					liberts[j]->setChecked(true);
 				}
 		}
+		cout << "TEST3\n";
 	}
 	for (int i = 0; i < groupCounter; i++)
 	{
-			if (group[i]->getUpChild()->getChar() == player)
+			cout << "Tailing for loop test: "<<i<<"\n";
+
+			if (group[i]->getUpChild() != 0 && group[i]->getUpChild()->getChar() == player)
 				group[groupCounter++] = group[i]->getUpChild();
-			if (group[i]->getDownChild()->getChar() == player)
+			if (group[i]->getDownChild() != 0 && group[i]->getDownChild()->getChar() == player)
 				group[groupCounter++] = group[i]->getDownChild();
-			if (group[i]->getLeftChild()->getChar() == player)
+			if (group[i]->getLeftChild() != 0 && group[i]->getLeftChild()->getChar() == player)
 				group[groupCounter++] = group[i]->getLeftChild();
-			if (group[i]->getRightChild()->getChar() == player)
+			if (group[i]->getRightChild() != 0 && group[i]->getRightChild()->getChar() == player)
 				group[groupCounter++] = group[i]->getRightChild();
 	}
 
 
+	cout << "Check if group is captured\n";
 	//Check if group is captured
 	bool safe = false; //assume group is dead until proven otherwise
 	for (int i = 0; i < groupCounter; i++)
 	{
-		if (group[i]->getUpChild()->getChar()    == '+')
+		if (group[i]->getUpChild() != 0 && group[i]->getUpChild()->getChar()    == '+')
 			safe = true;
-		if (group[i]->getDownChild()->getChar()  == '+')
+		if (group[i]->getDownChild() != 0 && group[i]->getDownChild()->getChar()    == '+')
 			safe = true;
-		if (group[i]->getLeftChild()->getChar()  == '+')
+		if (group[i]->getLeftChild() != 0 && group[i]->getLeftChild()->getChar()    == '+')
 			safe = true;
-		if (group[i]->getRightChild()->getChar() == '+')
+		if (group[i]->getRightChild() != 0 && group[i]->getRightChild()->getChar()    == '+')
 			safe = true;
 	}	
 
+	cout << "Deal with captured group\n";
 	//Deal with captured group
-	if (safe == false)
+ 	if (safe == false)
 	{
 		for (int i = 0; i < groupCounter; i++)
 		{
-			group[i]->setChar('+');
+			if (group[i] != 0)
+				group[i]->setChar('+');
 		}
 	}
 
-
+	cout << "Reset for next check\n";
 	//Reset for next Check
 	for(int i = 0; i < size; i++)
 	{
 		for(int j = 0; j < size; j++)
 		{
-			array[i][j]->setChecked(false);
+				array[i][j]->setChecked(false);
 		}
 	}
 }
