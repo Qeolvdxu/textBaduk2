@@ -1,11 +1,8 @@
 textbaduk2 is an collection of header and source files meant for simulating a game of Go/Baduk in c++
 The goal of this program is to allow a game of go for the simply run in the terminal with or without a user interface quickly and let humans and/or other programs to play.
-There are also TUI elements with the Board class for viewing the game in a terminal
+There are also TUI elements with the Board class for viewing the game in a terminal found here: 
 
-src/testBoard.cpp is a basic standard 18x18 board to play and test the headers
-src/testStone.cpp is to be built and run to verify that the stone class is free of errors (for debugging purposes)
-
-The game is made up of these classes
+The game is made up of these 2 classes
 
 Stones: This class is used to store variables about an exact location on the game board
   the class is initalized with no input variables
@@ -22,13 +19,3 @@ Boards: This class is the main component and includes the graphical aspects, all
     this function returns a boolean which specifies if the placement is safe or it is an illegal move
   changePlayer() will rotate the current player out of the next player in line
   checkCap() will check the group of the specified stone if it is captured or not and deals with that capture
-  
-testBoard.cpp includes an example of the minimum functions required to run a standard game:
-  to create a board using the Board variable type and specifiying the size as the initialization input
-  A main game loop which does the following:
-    collect input and calls the placeStone() function, supplying it with the input
-    a checkCap() function call to check if any stones need to be captured
-    and a changePlayer() function to rotate the player pool
-  
-  
-   
