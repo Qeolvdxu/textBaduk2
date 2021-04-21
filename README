@@ -1,7 +1,6 @@
 textbaduk2 is an collection of header and source files meant for simulating a game of Go/Baduk in c++
 The goal of this program is to allow a game of go for the simply run in the terminal with or without a user interface quickly and let humans and/or other programs to play.
-There are also TUI elements with the Board class for viewing the game in a terminal found here: 
-
+There are also TUI elements with the Board class for viewing the game in a terminal found in BoardGUI.cpp (this function is seperate because it is optional and can be deleted)
 The game is made up of these 2 classes
 
 Stones: This class is used to store variables about an exact location on the game board
