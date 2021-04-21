@@ -1,8 +1,6 @@
 #ifndef BOARD_CPP
 #define BOARD_CPP
 
-#include <iostream> 
-
 #include "../include/Board.hpp"
 
 using namespace std;
@@ -54,9 +52,8 @@ Board::~Board()
 
 bool Board::placeStone(int row, int column) //simply gets user input and changes the respective stones character
 {
-	bool valid = false;
 	if (row >= size || column >= size)
-		cout << "\nOut Of Bounds!\n";
+		bool valid = false;
 	else
 	{
 		if (array[row][column]->getChar() == '+')
@@ -65,7 +62,7 @@ bool Board::placeStone(int row, int column) //simply gets user input and changes
 			valid = true;
 		}
 		else
-			cout << "\nInvalid Placement!\n";
+			bool valid = false;
 	}
 	return valid;
 }
@@ -86,10 +83,8 @@ void Board::checkCap(int row, int column, char type) //checks and deals with one
 	Stone* liberts[4] = {0};
 	int groupCounter = 0;
 
-	cout << "Checkcap Start \n";
 	for(int i = 0; i < groupCounter + 1; i++)
 	{
-		cout << "Checkcap start test1: " << i << '\n';
 		if (current->getUpChild() != 0)
 			liberts[0] = current->getUpChild();
 		if (current->getDownChild() != 0)
@@ -98,7 +93,6 @@ void Board::checkCap(int row, int column, char type) //checks and deals with one
 			liberts[2] = current->getLeftChild();
 		if (current->getRightChild() != 0)
 			liberts[3] = current->getRightChild();
-		cout << "TEST2\n";
 
 		// Check each liberty of the current stone and if that liberty is a friend then add it to the group and check that stones liberties
 		for (int j = 0; j < 4; j++)
@@ -114,11 +108,9 @@ void Board::checkCap(int row, int column, char type) //checks and deals with one
 					liberts[j]->setChecked(true);
 				}
 		}
-		cout << "TEST3\n";
 	}
 	for (int i = 0; i < groupCounter; i++)
 	{
-			cout << "Tailing for loop test: "<<i<<"\n";
 
 			if (group[i]->getUpChild() != 0 && group[i]->getUpChild()->getChar() == type)
 				group[groupCounter++] = group[i]->getUpChild();
@@ -131,7 +123,6 @@ void Board::checkCap(int row, int column, char type) //checks and deals with one
 	}
 
 
-	cout << "Check if group is captured\n";
 	//Check if group is captured
 	bool safe = false; //assume group is dead until proven otherwise
 	for (int i = 0; i < groupCounter; i++)
@@ -146,7 +137,6 @@ void Board::checkCap(int row, int column, char type) //checks and deals with one
 			safe = true;
 	}	
 
-	cout << "Deal with captured group\n";
 	//Deal with captured group
  	if (safe == false)
 	{

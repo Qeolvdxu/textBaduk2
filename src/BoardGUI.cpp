@@ -10,7 +10,6 @@ using namespace std;
 void Board::printBoard()
 {
 	cout << "\u001b[2J" //clears screen on both windows and unix-likes
-	//<< "\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n"
     << "The turn belngs to player " << player << "\n\n"
     << "   ";
 	
