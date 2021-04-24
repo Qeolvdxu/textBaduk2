@@ -3,7 +3,7 @@
 
 class Stone
 {
-	private:
+	protected:
 		int owner;		// which player owns
 		bool placed; 	// true if someone has placed this stone
 		bool territory; // true if this space counts towards territory
@@ -46,7 +46,7 @@ class Stone
 
 class Board 
 {
-	private:
+	protected:
 		Stone*** array;
 		int size;
 		char player;
