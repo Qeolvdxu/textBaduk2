@@ -53,7 +53,6 @@ class Board
 	public:
 		Board(int newSize); 
 		~Board(void);
-		void printBoard(void); //optional tui
 		bool placeStone(int row, int column);
 		void changePlayer(void);
 		void checkAllCaps(void);
