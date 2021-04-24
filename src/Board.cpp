@@ -1,7 +1,7 @@
 #ifndef BOARD_CPP
 #define BOARD_CPP
 
-#include "../include/Board.hpp"
+#include "textbaduk2.h"
 
 using namespace std;
 
@@ -52,8 +52,9 @@ Board::~Board()
 
 bool Board::placeStone(int row, int column) //simply gets user input and changes the respective stones character
 {
+	bool valid = false;
 	if (row >= size || column >= size)
-		bool valid = false;
+		valid = false;
 	else
 	{
 		if (array[row][column]->getChar() == '+')
@@ -62,7 +63,7 @@ bool Board::placeStone(int row, int column) //simply gets user input and changes
 			valid = true;
 		}
 		else
-			bool valid = false;
+			valid = false;
 	}
 	return valid;
 }

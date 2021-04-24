@@ -1,7 +1,7 @@
 #ifndef STONE_CPP
 #define STONE_CPP
 
-#include "../include/Stone.hpp"
+#include "textbaduk2.h"
 
 Stone::Stone()
 {
