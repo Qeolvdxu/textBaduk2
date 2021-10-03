@@ -1,4 +1,5 @@
 See"https://github.com/Qeolvdxu/termGo" for a example on how to use this for a basic go board
+(You must install this library where your compiler can see it (there is a script included to install locally))
 
 textbaduk2 is an collection of header and source files meant for simulating a game of Go/Baduk in c++
 The goal of this program is to allow a game of go for the simply run in the terminal with or without a user interface quickly and let humans and/or other programs to play.
