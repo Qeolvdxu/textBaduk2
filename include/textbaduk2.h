@@ -57,5 +57,7 @@ class Board
 		void changePlayer(void);
 		void checkAllCaps(void);
 		void checkCap(int row, int column, char type);
+		void checkPoint(int row, int column);
+		void checkAllPoints(void);
 };
 #endif
